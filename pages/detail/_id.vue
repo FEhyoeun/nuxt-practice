@@ -11,7 +11,7 @@
       <div class="side-panel">
         <p class="name">{{ product.name }}</p>
         <p class="price">{{ product.price }}</p>
-        <button type="button" @click="addToCart">Add to Cart</button>
+        <button type="button" @click="addToCart">카트에 담기</button>
       </div>
     </div>
   </div>
@@ -27,8 +27,11 @@ export default {
     return {product} // 이건 그냥 product라는 객체로 싸서 내보내는 거
   },
   methods: {
-    addToCart() {
-
+    async addToCart() {
+      const response = await this.$store.dispatch('FETCH_CART_ITEMS', this.product)
+      console.log(response)
+      this.$store.commit('addCartItem', this.product)
+      this.$router.push('/cart')
     }
   }
 }

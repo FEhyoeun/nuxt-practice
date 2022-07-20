@@ -11,6 +11,9 @@
           <span>{{ product.price }}</span>
         </li>
       </ul>
+      <div class="cart-wrapper">
+        <button class="btn" @click="moveToCart">장바구니 바로 가기</button>
+      </div>
     </main>
   </div>
 </template>
@@ -44,6 +47,9 @@ export default {
   methods: {
     moveToDetailPage(id) {
       this.$router.push(`detail/${id}`)
+    },
+    moveToCart() {
+      this.$router.push('/cart')
     },
     async searchProducts() {
       const response = await fetchProductByKeyword(this.searchKeyword)

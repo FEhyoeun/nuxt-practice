@@ -27,8 +27,8 @@ import {FETCH_CART_ITEMS} from "@/store";
 
 export default {
   name: "cart",
-  async asyncData({ store }) { // 데이터를 불러오는 것
-    await store.dispatch(FETCH_CART_ITEMS).catch(err => console.error(err))
+  async asyncData({ store }) {
+    await store.dispatch(FETCH_CART_ITEMS)
   }
 }
 </script>

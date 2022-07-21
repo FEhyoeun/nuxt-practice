@@ -27,9 +27,9 @@ export default {
     return {product} // 이건 그냥 product라는 객체로 싸서 내보내는 거
   },
   methods: {
-    async addToCart() {
-      const response = await this.$store.dispatch('FETCH_CART_ITEMS', this.product)
-      console.log(response)
+    addToCart() {
+      // const response = await this.$store.dispatch('FETCH_CART_ITEMS', this.product)
+      // console.log(response)
       this.$store.commit('addCartItem', this.product)
       this.$router.push('/cart')
     }

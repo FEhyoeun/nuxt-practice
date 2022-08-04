@@ -26,6 +26,38 @@ export default {
     const product = response.data
     return {product} // 이건 그냥 product라는 객체로 싸서 내보내는 거
   },
+  head() {
+    return {
+      title: `Shopping Item Detail - ${this.product.name}`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `이 상품은 ${this.product.name}입니다.`,
+        },
+      ],
+      head: {
+        title: '상품 상세 페이지',
+        meta: [
+          {
+            hid: 'og:title',
+            property: 'og:title',
+            content: '상품 상세 페이지',
+          },
+          {
+            hid: 'og:description',
+            property: 'og:description',
+            content: '상품의 상세 정보를 확인해보세요',
+          },
+          {
+            hid: 'og:image',
+            property: 'og:image',
+            content: 'http://placeimg.com/640/480/fashion',
+          },
+        ],
+      },
+    }
+  },
   methods: {
     addToCart() {
       // const response = await this.$store.dispatch('FETCH_CART_ITEMS', this.product)

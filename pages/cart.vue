@@ -1,21 +1,7 @@
 <template>
   <div class="container">
     <h1 class="list-title">카트 페이지</h1>
-    <div class="list-wrapper">
-      <ul>
-        <li
-          class="list-item"
-          v-for="cartItem in $store.state.cartItems"
-          :key="cartItem.id"
-        >
-          <img class="thumbnail" :src="cartItem.imageUrl" :alt="cartItem.name" />
-          <div class="description">
-            <p>{{ cartItem.name }}</p>
-            <span>{{ cartItem.price }}</span>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <CartList />
     <div>
       <button class="extra-panel">구매하기</button>
     </div>
@@ -23,12 +9,16 @@
 </template>
 
 <script>
-import {FETCH_CART_ITEMS} from "@/store";
+// import {FETCH_CART_ITEMS} from "@/store";
+import CartList from "@/components/CartList";
 
 export default {
   name: "cart",
-  async asyncData({ store }) {
-    await store.dispatch(FETCH_CART_ITEMS)
+  // async asyncData({ store }) { // nuxtServerInit을 해주면 이건 쓸 필요가 없음. why? 결국 같은 동작을 하는 거기 때문에. asyncData는 page level에서 한 거임.
+  //   await store.dispatch(FETCH_CART_ITEMS)
+  // }
+  components: {
+    CartList
   }
 }
 </script>
@@ -40,19 +30,6 @@ export default {
 .list-title {
   font-weight: 700;
   font-size: 1.4rem;
-}
-.list-wrapper {
-  margin: 0.4rem 0;
-}
-.list-item {
-  display: flex;
-}
-.thumbnail {
-  width: 100px;
-  height: 100px;
-}
-.description {
-  padding: 2rem 1rem;
 }
 .extra-panel {
   text-align: right;
